@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import CardList from "./CardList.js";
+import {robots} from "./robots.js";
+import SearchBox from "./SearchBox.js";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    // Need super in order to be able to use 'this' (using the constructor of React.Component)
+    super();
+    this.state = {
+      robots: robots,
+      searchField: ''
+    };
+  }
+
+ render() {
+   return (
+     <div className='tc'>
+       <h1>RoboFriends</h1>
+       <SearchBox />
+       <CardList robots={ this.state.robots }/>
+     </div>
+   );
+ }
 }
 
 export default App;

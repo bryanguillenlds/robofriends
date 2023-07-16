@@ -13,12 +13,27 @@ class App extends React.Component {
     };
   }
 
+  // Method to react to 'onChange' event in the input inside the SearchBox Component
+  // Making it an arrow function to be able to use 'this' in the context of this component.
+  // Otherwise, it would refer to the component where the method is called/triggered.
+  onSearchChange = (event) => {
+    // Setting the state of the search field to be what the user typed
+    // this.setState is built into React to update the state of the component
+    this.setState({searchField: event.target.value});
+  }
+
+  //Method to render the component. It can contain JSX code and also other components and data necessary for those components.
  render() {
+   const filteredRobots = this.state.robots.filter((robot) => {
+     // Return true if robot.name includes the searchfield value (what the user typed in the search box)
+     return robot.name.toLowerCase().includes(this.state.searchField.toLowerCase());
+   });
+
    return (
      <div className='tc'>
        <h1>RoboFriends</h1>
-       <SearchBox />
-       <CardList robots={ this.state.robots }/>
+       <SearchBox searchChange={this.onSearchChange}/>
+       <CardList robots={ filteredRobots }/>
      </div>
    );
  }

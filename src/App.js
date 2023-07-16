@@ -1,6 +1,5 @@
 import React from "react";
 import CardList from "./CardList.js";
-import {robots} from "./robots.js";
 import SearchBox from "./SearchBox.js";
 import './App.css';
 
@@ -9,7 +8,7 @@ class App extends React.Component {
     // Need super in order to be able to use 'this' (using the constructor of React.Component)
     super();
     this.state = {
-      robots: robots,
+      robots: [],
       searchField: ''
     };
   }
@@ -30,14 +29,26 @@ class App extends React.Component {
      return robot.name.toLowerCase().includes(this.state.searchField.toLowerCase());
    });
 
-   return (
-     <div className='tc'>
-       <h1 className='f1'>RoboFriends</h1>
-       <SearchBox searchChange={this.onSearchChange}/>
-       <CardList robots={ filteredRobots }/>
-     </div>
-   );
+   // Show loading text if there are no robots yet. Otherwise, render.
+   if (this.state.robots.length === 0 ) {
+     return <h1 className='tc'>Loading...</h1>;
+   } else {
+     return (
+       <div className='tc'>
+         <h1 className='f1'>RoboFriends</h1>
+         <SearchBox searchChange={this.onSearchChange}/>
+         <CardList robots={ filteredRobots }/>
+       </div>
+     );
+   }
  }
+
+ // Runs after render
+  // Will use this method to update the state of the component with actual API data
+ componentDidMount() {
+   fetch('https://jsonplaceholder.typicode.com/users')
+     .then(response => response.json())
+     .then(users => this.setState({robots: users}));}
 }
 
 export default App;

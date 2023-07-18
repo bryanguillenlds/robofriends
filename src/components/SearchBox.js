@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 // Receiving search value and method to call on input change
 const SearchBox = ({searchChange}) => {

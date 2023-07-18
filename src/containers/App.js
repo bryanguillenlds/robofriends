@@ -1,7 +1,7 @@
-import React from "react";
-import CardList from "./CardList.js";
-import SearchBox from "./SearchBox.js";
-import Scroll from "./Scroll.js";
+import React from 'react';
+import CardList from '../components/CardList.js';
+import SearchBox from '../components/SearchBox.js';
+import Scroll from '../components/Scroll.js';
 import './App.css';
 
 class App extends React.Component {
@@ -25,13 +25,15 @@ class App extends React.Component {
 
   //Method to render the component. It can contain JSX code and also other components and data necessary for those components.
  render() {
-   const filteredRobots = this.state.robots.filter((robot) => {
+    const { robots, searchField } = this.state;
+
+   const filteredRobots = robots.filter((robot) => {
      // Return true if robot.name includes the searchfield value (what the user typed in the search box)
-     return robot.name.toLowerCase().includes(this.state.searchField.toLowerCase());
+     return robot.name.toLowerCase().includes(searchField.toLowerCase());
    });
 
    // Show loading text if there are no robots yet. Otherwise, render.
-   if (this.state.robots.length === 0 ) {
+   if (!robots.length) {
      return <h1 className='tc'>Loading...</h1>;
    } else {
      return (

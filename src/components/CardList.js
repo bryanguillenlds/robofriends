@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import Card from './Card.js';
 import './Card.css'
 
 // Destructure the props being passed to this component and use them.

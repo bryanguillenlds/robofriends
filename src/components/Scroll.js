@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 // Props have access to children components which this component wraps.
 const Scroll = (props) => {
   return (
     // Remember classes in JSX sometimes are named differently.
     // For example, overflow-y would be overflowY.
-    <div style={{overflowY: 'scroll', height: '800px', border: '1px solid black'}}>
+    <div style={{overflowY: 'scroll', height: '950px', border: '1px solid black'}}>
       {props.children}
     </div>
   )

@@ -13,13 +13,15 @@ function App() {
   const [searchField, setSearchField] = useState('');
 
   // Fetch the robots from the API by hooking into useEffect.
-  // This method runs after rendering.
   // Will use this method to update the state of the component with actual API data
+  // This method runs after rendering. Every time, unless we tell it othewise.
+  // The second argument, '[]', tells it how many times to run. If empty, it will run once.
+  // If there was any value in the array, it would run every time one of those values changes.
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(users => setRobots(users));
-  }, []);   
+  }, []);
 
   // Method to react to 'onChange' event in the input inside the SearchBox Component
   // Making it an arrow function to be able to use 'this' in the context of this component.
@@ -43,7 +45,7 @@ function App() {
    return (
      <div className='tc'>
        <h1 className='f1'>RoboFriends</h1>
-       <SearchBox searchChange={onSearchChange}/>
+     <SearchBox searchChange={onSearchChange}/>
        <Scroll>
          <ErrorBoundary>
            <CardList robots={ filteredRobots }/>

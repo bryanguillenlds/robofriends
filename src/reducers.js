@@ -1,5 +1,5 @@
 // Set the initial state, SINGLE SOURCE OF TRUTH.
-import {SET_SEARCH_FIELD} from "src/constants.js";
+import {SET_SEARCH_FIELD} from './constants.js';
 
 const initialState = {
   robots: [],

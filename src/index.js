@@ -2,14 +2,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
 import './index.css';
 import App from './containers/App.js';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
-import {searchRobots} from './reducers.js';
+import {requestRobots, searchRobots} from './reducers.js';
 
-const store = createStore(searchRobots);
+// Setting up middleware
+const logger = createLogger();
+// Combine the reducers into a root reducer
+const rootReducer = combineReducers({
+  searchRobots,
+  requestRobots
+});
+// Init store and apply middleware (it applies them in order)
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

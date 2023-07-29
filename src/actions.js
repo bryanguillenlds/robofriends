@@ -15,7 +15,9 @@ export const setSearchField = (text) => {
 }
 
 // Action for requesting the robots from the API and sending to the reducer the appropriate payload and the type of action.
-// Higher order function that returns a function with the dispatch. This is because redux-thunk provides the dispatch and is expecting a function returned that uses that dispatch.
+// Higher order function that returns a function with the dispatch.
+// This is because redux-thunk provides the dispatch and is expecting a function returned that uses that dispatch.
+// The thunk allows you to dispatch multiple actions asynchronously.
 export const requestRobots = () => (dispatch) => {
   dispatch({
     type: REQUEST_ROBOTS_PENDING

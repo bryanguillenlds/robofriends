@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import CardList from '../components/CardList.js';
 import SearchBox from '../components/SearchBox.js';
 import Scroll from '../components/Scroll.js';
+import Header from '../components/Header.js';
 import ErrorBoundary from '../components/ErrorBoundary.js';
 import './App.css';
 
@@ -52,7 +53,7 @@ function App(props) {
  } else {
    return (
      <div className='tc'>
-       <h1 className='f1'>RoboFriends</h1>
+       <Header />
        <SearchBox searchChange={onSearchChange}/>
        <Scroll>
          <ErrorBoundary>
